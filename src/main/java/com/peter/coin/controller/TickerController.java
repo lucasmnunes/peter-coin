@@ -7,22 +7,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.peter.coin.service.HelloService;
+import com.peter.coin.model.Ticker;
+import com.peter.coin.service.TickerService;
 
 @RestController
-@RequestMapping("/api/v1/hello")
-public class HelloController {
+@RequestMapping("/api/v1/tickers")
+public class TickerController {
 
-    private HelloService service;
+    private TickerService service;
 
     @Autowired
-    public HelloController(HelloService service) {
+    public TickerController(TickerService service) {
         this.service = service;
     }
 
     @GetMapping
-    public ResponseEntity<String> hello() {
-        return new ResponseEntity<>(service.sayHello(), HttpStatus.OK);
+    public ResponseEntity<Ticker> retrieveTicker() {
+        return new ResponseEntity<>(service.getTicker(), HttpStatus.OK);
     }
 
 }
